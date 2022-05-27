@@ -1,11 +1,11 @@
-package com.sparta.myselectshop;
+package com.sparta.myselectshop.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+//@AllArgsConstructor
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 public class ProductRequestDto {
     // 관심상품명
