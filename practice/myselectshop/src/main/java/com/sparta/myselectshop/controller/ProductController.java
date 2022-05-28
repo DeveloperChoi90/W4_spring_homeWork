@@ -1,10 +1,14 @@
 package com.sparta.myselectshop.controller;
 
 import com.sparta.myselectshop.model.Product;
+import com.sparta.myselectshop.model.UserRoleEnum;
+import com.sparta.myselectshop.security.UserDetailsImpl;
 import com.sparta.myselectshop.service.ProductService;
 import com.sparta.myselectshop.dto.ProductMypriceRequestDto;
 import com.sparta.myselectshop.dto.ProductRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,9 +27,9 @@ public class ProductController {
 
     // 신규 상품 등록
     @PostMapping("/api/products")
-    public Product createProduct(@RequestBody ProductRequestDto requestDto) {
+    public Product createProduct(@RequestBody ProductRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         // 응답 보내기
-        return productService.createProduct(requestDto);
+        return productService.createProduct(requestDto, userDetails.getUser().getId());
     }
 
     // 설정 가격 변경
@@ -38,7 +42,15 @@ public class ProductController {
 
     // 등록된 전체 상품 목록 조회
     @GetMapping("/api/products")
-    public List<Product> getProducts() {
+    public List<Product> getProducts(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        // 응답 보내기
+        return productService.getProducts(userDetails.getUser().getId());
+    }
+
+    // admin 계정 등록된 전체 상품 목록 조회
+    @Secured(UserRoleEnum.Authority.ADMIN)
+    @GetMapping("/api/admin/products")
+    public List<Product> getAllProducts() {
         // 응답 보내기
         return productService.getProducts();
     }
