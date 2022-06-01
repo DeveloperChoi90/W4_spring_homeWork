@@ -8,11 +8,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 
 public class UserDetailsImpl implements UserDetails {
 
-    private final User user;
+    // 삭제
+    private User user;
+/*    // 추가
+    private Long userId;
+    private String username;
+    private UserRoleEnum role;*/
 
     public UserDetailsImpl(User user) {
         this.user = user;

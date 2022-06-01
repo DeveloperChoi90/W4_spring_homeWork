@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/images/**").permitAll()
                 // css 폴더를 login 없이 허용
                 .antMatchers("/css/**").permitAll()
-                // 회원 관리 처리 API 전부를 login 없이 허용
+                // 회원 관리 처리 API 전부를 login 없이 허용ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ
                 .antMatchers("/user/**").permitAll()
                 // 그 외 어떤 요청이든 '인증'
                 .anyRequest().authenticated()
@@ -44,13 +44,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // [로그인 기능]
                 .formLogin()
                 // 로그인 View 제공 (GET /user/login)
-                .loginPage("/user/login")
+                .loginPage("/user/loginView")
                 // 로그인 처리 (POST /user/login)
-                .loginProcessingUrl("/user/login")
+                .loginProcessingUrl("/user/loginView")
                 // 로그인 처리 후 성공 시 URL
                 .defaultSuccessUrl("/")
                 // 로그인 처리 후 실패 시 URL
-                .failureUrl("/user/login?error")
+                .failureUrl("/user/loginView?error")
                 .permitAll()
                 .and()
                 // [로그아웃 기능]

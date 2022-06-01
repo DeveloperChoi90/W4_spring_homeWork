@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 //@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class ProductRequestDto {
     // 관심상품명

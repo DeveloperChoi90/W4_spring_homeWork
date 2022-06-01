@@ -1,7 +1,6 @@
 package com.sparta.myselectshop.util;
 
 import com.sparta.myselectshop.dto.ItemDto;
-import com.sparta.myselectshop.dto.ItemDto;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.*;

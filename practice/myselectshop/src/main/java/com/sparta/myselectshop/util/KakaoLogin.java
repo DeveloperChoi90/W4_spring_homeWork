@@ -7,11 +7,16 @@ import com.sparta.myselectshop.dto.KakaoUserInfoDto;
 import com.sparta.myselectshop.model.User;
 import com.sparta.myselectshop.model.UserRoleEnum;
 import com.sparta.myselectshop.repository.UserRepository;
+import com.sparta.myselectshop.security.UserDetailsImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
@@ -87,7 +92,7 @@ public class KakaoLogin {
         return new KakaoUserInfoDto(id, nickname, email);
     }
 
-    public User signupToUser(KakaoUserInfoDto kakaoUserInfo) {
+    public User signupKakaoUserToUser(KakaoUserInfoDto kakaoUserInfo) {
         // 3. 회원가입
         // DB 에 중복된 Kakao Id 가 있는지 확인
         Long kakaoId = kakaoUserInfo.getId();
@@ -110,6 +115,12 @@ public class KakaoLogin {
             userRepository.save(kakaoUser);
         }
         return kakaoUser;
+    }
+
+    public void forceLogin(User kakaoUser) {
+        UserDetails userDetails = new UserDetailsImpl(kakaoUser);
+        Authentication authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 }
 

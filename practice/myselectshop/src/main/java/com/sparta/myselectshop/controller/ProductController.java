@@ -52,6 +52,6 @@ public class ProductController {
     @GetMapping("/api/admin/products")
     public List<Product> getAllProducts() {
         // 응답 보내기
-        return productService.getProducts();
+        return productService.getAllProducts();
     }
 }
