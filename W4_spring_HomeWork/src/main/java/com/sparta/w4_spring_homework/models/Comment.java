@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Setter
 @Getter
 @NoArgsConstructor
-@Table(name = "COMMENT")
+@Table(name = "comment")
 public class Comment extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,11 +22,11 @@ public class Comment extends Timestamped {
     private String text;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "POST_ID")
+    @JoinColumn(name = "post_id") //name = "POST_ID"
     private Post post;
 
     public Comment(CommentRequestDto requestDto) {

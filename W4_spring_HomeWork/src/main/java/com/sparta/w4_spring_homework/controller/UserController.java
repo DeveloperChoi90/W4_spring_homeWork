@@ -32,15 +32,14 @@ public class UserController {
 
     // 회원 로그인 페이지
     @PostMapping("/login")
-    public JwtResponseDto login(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public JwtResponseDto login(@RequestBody @AuthenticationPrincipal UserDetailsImpl userDetails) {
 
-        if(userDetails.getUsername().equals("anonymousUser")){
+        if(userDetails==null){
             return new JwtResponseDto("이미 로그인이 되어있습니다.");
         }
-
         try {
             return userService.login(userDetails);
-        } catch (Exception e) {
+        } catch (Exception e) {  //TODO: 2022/06/02 login 함수에서 예외 상황 발생
             return new JwtResponseDto("닉네임 또는 패스워드를 확인해주세요");
         }
     }
@@ -83,7 +82,7 @@ public class UserController {
             bindingResult.addError(fieldError);
         }
 
-        if (requestDto.getPassword().contains(requestDto.getUsername())) { // indexof가 -1이면 안에 포함이 안되어있dma
+        if (requestDto.getPassword().contains(requestDto.getUsername())) {
             FieldError fieldError = new FieldError("requestDto", "password", "비밀번호에 닉네임과 같은 값을 넣을 수 없습니다.");
             bindingResult.addError(fieldError);
         }

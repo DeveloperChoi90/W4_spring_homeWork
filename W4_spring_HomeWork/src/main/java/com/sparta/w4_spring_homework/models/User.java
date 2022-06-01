@@ -5,44 +5,41 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
-@Table(name = "USERS")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 @Entity
 public class User extends Timestamped{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
+    @Column(name = "user_id")
     private Long id; // primary key
 
-    @Column(name = "USERNAME", length = 50, unique = true)
+    @Column(name = "username", length = 50, unique = true)
     private String username; // 아이디
 
     @JsonIgnore // JSON에 포함 하지 않음
-    @Column(name = "PASSWORD", length = 100)
+    @Column(name = "password", length = 100)
     private String password;
 
-    @Column(nullable = false)
+    @Column(name = "email", length = 100)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "role", nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
 
-    @OneToMany(mappedBy = "USER_ID")
-    private List<Post> post = new ArrayList<>();
-
-    @OneToMany(mappedBy = "USER_ID")
-    private List<Comment> comment = new ArrayList<>();
+//    @OneToMany(mappedBy = "users") //, targetEntity = Post.class
+//    private List<Post> post = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "users") //, targetEntity = Comment.class
+//    private List<Comment> comment = new ArrayList<>();
 
     public User(String username, String password, String email, UserRoleEnum role) {
         this.username = username;

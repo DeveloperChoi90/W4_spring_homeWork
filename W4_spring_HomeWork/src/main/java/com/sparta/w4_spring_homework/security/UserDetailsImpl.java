@@ -2,7 +2,9 @@ package com.sparta.w4_spring_homework.security;
 
 import com.sparta.w4_spring_homework.models.User;
 import com.sparta.w4_spring_homework.models.UserRoleEnum;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -12,13 +14,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Getter
-@RequiredArgsConstructor
+@NoArgsConstructor
+//@RequiredArgsConstructor
+@AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 //    private final Long userId;
 //    private final String password;
 //    private final String username;
 //    private final UserRoleEnum role;
-    private final User user;
+    private User user;
 
     public User getUser() {
         return user;

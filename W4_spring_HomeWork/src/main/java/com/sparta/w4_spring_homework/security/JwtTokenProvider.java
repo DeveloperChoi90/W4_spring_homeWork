@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 public class JwtTokenProvider implements InitializingBean {
 
     private static final String AUTHORITIES_KEY = "auth";
-    private String secretKey = "webfirewoodsibalnumuarujanna";
+    private String secretKey = "webfirewoodsibalnumuaruj32423annafasdfasdfasd763fsdasavasvassdf";
     private Key key;
 
     private final UserDetailsService userDetailsService;

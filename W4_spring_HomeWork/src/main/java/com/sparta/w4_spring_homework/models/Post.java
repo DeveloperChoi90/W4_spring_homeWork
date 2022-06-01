@@ -13,24 +13,24 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Table(name = "POST")
+@Table(name = "post")
 public class Post extends Timestamped{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "POST_ID")
+    @Column(name = "post_id")
     private Long id;
 
-    @Column(name = "TITLE")
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "TEXT")
+    @Column(name = "text")
     private String text;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "user_id", nullable=false) //name = "USER_ID"
     private User user;
 
-    @OneToMany(mappedBy = "POST",cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "post", targetEntity = Comment.class, cascade = CascadeType.REMOVE)
     List<Comment> comment = new ArrayList<>();
 
 

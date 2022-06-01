@@ -31,7 +31,7 @@ public class UserRequestDto {
     @Email
     private String email;
 
-    private UserRoleEnum isAdmin;
+    private boolean isAdmin = false;
 
     private String adminToken = "";
 
@@ -40,6 +40,6 @@ public class UserRequestDto {
         this.username = user.getUsername();
         this.password = user.getPassword();
         this.email = user.getEmail();
-        this.isAdmin = user.getRole();
+//        this.isAdmin = user.getRole();
     }
 }
