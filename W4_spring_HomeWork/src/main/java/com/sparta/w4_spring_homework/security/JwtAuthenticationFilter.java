@@ -1,5 +1,6 @@
 package com.sparta.w4_spring_homework.security;
 
+import com.auth0.jwt.JWT;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -21,9 +22,9 @@ public class JwtAuthenticationFilter extends GenericFilterBean {
     private final JwtTokenProvider jwtTokenProvider;
 
     //===================================================
-    // GenericFilterBean 의 doFilter() 메서드를 오버라이드
-    // 실제 필터링 로직을 doFilter() 에 작성
-    // JWT 토큰의 인증 정보를 현재 실행중인 시큐리티 컨텍스트에 저장하는 역할을 수행
+    /*GenericFilterBean 의 doFilter() 메서드를 오버라이드
+     실제 필터링 로직을 doFilter() 에 작성
+     JWT 토큰의 인증 정보를 현재 실행중인 시큐리티 컨텍스트에 저장하는 역할을 수행*/
     //===================================================
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {

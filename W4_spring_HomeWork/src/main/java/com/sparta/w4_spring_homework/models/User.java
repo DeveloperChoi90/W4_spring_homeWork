@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -35,11 +37,11 @@ public class User extends Timestamped{
     private UserRoleEnum role;
 
 
-//    @OneToMany(mappedBy = "users") //, targetEntity = Post.class
-//    private List<Post> post = new ArrayList<>();
-//
-//    @OneToMany(mappedBy = "users") //, targetEntity = Comment.class
-//    private List<Comment> comment = new ArrayList<>();
+    @OneToMany(mappedBy = "user") //, targetEntity = Post.class
+    private List<Post> post = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user") //, targetEntity = Comment.class
+    private List<Comment> comment = new ArrayList<>();
 
     public User(String username, String password, String email, UserRoleEnum role) {
         this.username = username;

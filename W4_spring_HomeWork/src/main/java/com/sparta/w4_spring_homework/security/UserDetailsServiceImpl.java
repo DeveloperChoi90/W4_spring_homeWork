@@ -3,7 +3,6 @@ package com.sparta.w4_spring_homework.security;
 import com.sparta.w4_spring_homework.models.User;
 import com.sparta.w4_spring_homework.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

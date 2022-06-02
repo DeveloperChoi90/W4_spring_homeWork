@@ -1,6 +1,5 @@
 package com.sparta.w4_spring_homework.dto;
 
-import com.sparta.w4_spring_homework.models.UserRoleEnum;
 import com.sparta.w4_spring_homework.models.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,6 +22,7 @@ public class UserRequestDto {
     @Pattern(regexp="^[a-zA-Z0-9]{4,12}$", message="비밀번호를 4~12자로 입력해주세요.(특수문자x)")
     @NotBlank(message = "비밀번호를 입력해주세요")
     private String password;
+
 
     @NotBlank(message = "비밀번호 확인을 입력해주세요")
     private String checkpw;

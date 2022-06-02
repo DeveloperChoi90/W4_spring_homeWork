@@ -24,22 +24,6 @@ public class PostController {
 
     private final UserRepository userRepository;
 
-    //게시글 전체 조회
-//    @GetMapping("/api/index")
-//    public String getBoard(Model model){
-//        List<Board> board = boardRepository.findAll();
-//        model.addAttribute("board",board);
-//        return "index";
-//    }
-
-//    @GetMapping("/")
-//    public String getIndex(Model model, @AuthenticationPrincipal UserDetailsImpl userDetails){
-//        List<Board> board = boardRepository.findAll();
-//        model.addAttribute("board",board);
-//        model.addAttribute("username",userDetails.getUsername());
-//        return "index";
-//    }
-
     // 게시글 조회
     @GetMapping("/posts")
     public List<Post> getPosts(){
@@ -48,13 +32,13 @@ public class PostController {
 
     // 게시글 작성
     @PostMapping("/posts")
-    public String createPost(@AuthenticationPrincipal UserDetailsImpl userDetails,@ModelAttribute PostRequestDto requestDto){
+    public String createPost(@AuthenticationPrincipal UserDetailsImpl userDetails, @RequestBody PostRequestDto requestDto){
         requestDto.setUser(userDetails.getUser());
         return postService.savePost(requestDto);
     }
 
     //게시글 상세 조회
-    @GetMapping("/api/posts/{id}")
+    @GetMapping("/posts/{id}")
     public Post getOneBoard(@PathVariable Long id){
 
         Post post = postRepository.findById(id).orElseThrow(
