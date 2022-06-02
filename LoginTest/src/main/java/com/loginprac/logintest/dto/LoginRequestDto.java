@@ -19,9 +19,6 @@ public class LoginRequestDto {
     @NotBlank
     private String password;
 
-    @NotBlank
-    private String roleName;
-
     public String getUsernameOrEmail() {
         return usernameOrEmail;
     }
@@ -37,6 +34,4 @@ public class LoginRequestDto {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getRoleName() {return roleName;}
 }

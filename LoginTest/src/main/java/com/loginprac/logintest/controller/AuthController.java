@@ -26,10 +26,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 //=============================================================
 // 로그인 및 가입을 위한 API
@@ -58,10 +55,10 @@ public class AuthController {
     @Autowired
     JwtTokenProvider tokenProvider;
 
-//    @GetMapping("/test")
-//    public String test(){
-//        return "test";
-//    }
+    @GetMapping("/test")
+    public List<Role> test(){
+        return roleRepository.findAll();
+    }
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestDto loginRequest) {

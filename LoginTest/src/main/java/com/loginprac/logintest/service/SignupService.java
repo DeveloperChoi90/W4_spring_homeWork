@@ -25,19 +25,22 @@ public class SignupService {
     PasswordEncoder passwordEncoder;
 
     public User signupUser(SignupRequestDto signupRequestDto){
+        if(roleRepository.findAll().isEmpty()){
             Role roleUser = new Role();
             roleUser.setName(RoleName.valueOf("ROLE_USER"));
             roleRepository.save(roleUser);
             Role roleAdmin = new Role();
             roleAdmin.setName(RoleName.valueOf("ROLE_ADMIN"));
             roleRepository.save(roleAdmin);
+        }
+
 
         // Creating user's account
         User user = new User(signupRequestDto.getUsername(), signupRequestDto.getEmail(), signupRequestDto.getPassword());
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+        Role userRole = roleRepository.findByName(RoleName.valueOf(signupRequestDto.getRole()))
                 .orElseThrow(() -> new AppException("User Role not set."));
 
         user.setRoles(Collections.singleton(userRole));
@@ -46,6 +49,4 @@ public class SignupService {
 
         return result;
     }
-
-
 }
