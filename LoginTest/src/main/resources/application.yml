@@ -1,0 +1,50 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: utf-8
+      enabled: true
+
+spring:
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  h2:
+    console:
+      enabled: true
+  profiles:
+    active: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:springtestdb
+      driver-class-name: org.h2.Driver
+      username: sa
+      password:
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update # create, update, none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+    #show-sql: true
+    format-sql: true
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    time-zome: Asia/Seoul
+
+app:
+  jwtSecret: jwtsigntutorialasdfasdfasdfasdfasdftesttestetst12fas12jkrqwuoihkljvnnzm
+  jwtExpirationInMs: 604800000
+
+  cors:
+    allowedOrigins: http://localhost:3000
+
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
